@@ -1,0 +1,818 @@
+:root{
+  --messageBoxWidth: ;
+  --LeftWidth: ;
+  --rightWidth: ;
+  --msgMarginBottom: 100px;
+}
+*{
+  color: var(--super-dark);
+  background-color: transparent;
+  transition: background 0.5s; -webkit-transition: background 0.5s;
+}
+/*cotum elements*/
+  i.fa, i.fas{
+    color: inherit;
+    background-color: inherit;
+  }
+  .loadingIcon{
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  #MessageBoxContainer, #LeftBarContainer{
+    scrollbar-color: #AAA var(--hilighted-bg);
+    scrollbar-width: thin;
+  }
+  #WindowsBtn .title{
+    text-align: center;
+    padding-left: 3px;
+    position: relative;
+    color: var(--super-dark);
+    text-decoration: none;
+    font-size: 12px;
+    overflow: hidden;
+  }
+  body{
+    font-size: 16px;
+    background-color: var(--super-light);
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: wrap;
+    -webkit-flex-flow: row wrap;
+  }
+/*/costum elements*/
+
+/*slider*/
+  .switch{ position: relative; display: inline-block; width: 40px; height: 18px; }
+  .switch input.slideSwitch{  opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; 
+            background-color: #AAA; top: 2px;
+            -webkit-transition: .4s; transition: .4s; 
+          }
+  .slider:before{ position: absolute; content: ""; height: 14px; width: 14px;
+                  vertical-align: middle;background-color: var(--super-light);
+                  -webkit-transition: .4s; transition: .4s;
+                }
+  input.slideSwitch:checked + .slider { background-color: var(--normal-border); }
+  input.slideSwitch:focus + .slider { box-shadow: 0 0 1px var(--normal-border); }
+  input.slideSwitch:checked + .slider:before { 
+      -webkit-transform: translateX(26px); -ms-transform: translateX(26px); transform: translateX(26px);
+    }
+  .slider.round { border-radius: 34px; }
+  .slider.round:before { border-radius: 50%; }
+/*/slider*/
+
+/*Menu*/
+  #menuContainer{
+    display: none;
+    position: fixed;
+    min-width: 100%;
+    max-width: 100%;
+    top: 0;
+    max-height: 50px;
+    z-index: 2;
+  }
+  #Menu{
+    background-color: var(--normal-bg);
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    padding: 10px 20px 0 20px;
+    height: auto;
+    margin: 0;
+  }
+  #Menu #LeftMenu{
+    display: flex;
+    width: 50%;
+    float: left;
+    position: relative;
+    flex-shrink: 0;
+  }
+  #Menu #LeftMenu ul{
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: auto;
+    position: relative;
+  }
+  #Menu #LeftMenu ul #ImgContainer img, #Menu #LeftMenu ul #ImgContainer i.fas{
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    top: 22%;
+    left: 2px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+  }
+  #Menu #LeftMenu ul #ImgContainer i.fas.fa-window-close{
+    color: var(--color-danger);
+  }
+  #Menu #LeftMenu ul #SearchBox{
+    position: relative;
+    width: auto;
+  }
+  #Menu #LeftMenu ul #SearchBox #SearchBoxForm{
+    position: relative;
+    width: auto;
+  }
+  #Menu #LeftMenu ul #SearchBox #SearchBoxForm input{
+    height: 32px;
+    border: 1px solid transparent;
+    border-bottom-color: var(--color-mid);
+    background-color: transparent;
+    color: var(--super-dark);
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 5px;
+    padding-left: 32px !important;
+    display: inline-flex;
+    outline: none;
+    margin: 0;
+    margin-top: 8px !important;
+    padding: 0;
+    width: 50vw;
+    max-width: 250px;
+  }
+  #Menu #LeftMenu ul #SearchBox #SearchBoxForm input:focus{
+    border-bottom:2px solid var(--normal-border);
+  }
+  #Menu #LeftMenu ul #Searchreasult{
+    display: none;
+    box-sizing: border-box;
+    position: absolute;
+    margin-top: 60px;
+    min-height: 20px;
+    height: auto;
+    overflow: auto;
+    max-height: 350px;
+    background-color: var(--normal-bg);
+    border: 1px solid var(--color-mid);
+    border-top: none;
+    border-bottom: 3px solid var(--normal-border);
+    width: auto;
+    min-width: 300px;
+    max-width: 150%;
+    direction: rtl;
+  }
+  #Menu #LeftMenu ul #Searchreasult #Container > *:last-child{
+    margin-bottom: 35px;
+  }
+  #Menu #LeftMenu ul #Searchreasult .searchRes{
+    position: relative;
+    display: inline-block;
+    border-left: 3px solid var(--normal-border);
+    color: var(--super-light);
+    font-weight: bold;
+    text-shadow: 1px 1px 2px var(--super-dark);
+    background-color: var(--hilighted-bg);
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    word-break: keep-all;
+    overflow-wrap: initial;
+    box-sizing: border-box;
+    flex: 1;
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+    /*! margin: 100px; */
+  }
+  #Menu #LeftMenu ul #Searchreasult .searchRes:hover{
+    background-color: var(--hovered-bg);
+  }
+  #Menu #LeftMenu ul #Searchreasult .searchRes i{
+    padding: 0 5px;
+    float: right;
+    right: 0;
+  }
+  #Menu #LeftMenu ul #Searchreasult .searchRes i.fa-times{
+    color: var(--color-danger);
+  }
+  #Menu #LeftMenu ul #Searchreasult .searchRes i.fa-minus-circle{
+    color: var(--color-danger);
+  }
+  #Menu #RightMenu{
+    float: right;
+    width: 50%;
+    display: flex;
+  }
+  #Menu #RightMenu #DropDown{
+    margin-left: auto;
+    position: relative;
+    display: inline-block;
+    overflow: auto;
+    height: auto;
+    background-color: var(--normal-bg);
+  }
+  #Menu #RightMenu #DropDown i{
+    position: relative;
+    display: inline-block;
+    top: 10px;
+    margin:auto;
+    cursor: pointer;
+    color: var(--text-normal);
+  }
+  #Menu #DropDownMenu{
+    position: absolute;
+    display: table;
+    z-index: 1;
+    right: 0;
+    top: 100%;
+    border-bottom: 2px solid var(--normal-border);
+    height: auto;
+    min-height: 0;
+  }
+  #Menu #DropDownMenu .DropDownItem{
+    display: block;
+    background-color: var(--hilighted-bg);
+    width: 200px;
+    padding: 10px 10px;
+  }
+  #Menu #DropDownMenu .DropDownItem .item-label{
+    color: var(--super-dark);
+    font-size: 20px;
+    display: table-row;
+    line-height: 32px;
+    cursor: pointer;
+    transition: color 1s; -webkit-transition: color 1s;
+  }
+  #Menu #DropDownMenu .DropDownItem .item-label:hover{
+    color: var(--color-mid);
+  }
+/*/Menu*/
+
+/*LeftBar*/
+  #leftBarContainer{
+    border: 1px solid var(--color-mid);
+    display: none;
+    height: calc(100% - 90px);
+    margin-top: 70px;
+    left: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+    position: fixed;
+    margin-right: 0;
+  }
+  #ShowSideBarLeft{
+    display: none;
+    position: fixed;
+    left: 0;
+    cursor: pointer;
+    color: yellow;
+    z-index: 1;
+    transition: color 1s; -webkit-transition: color 1s;
+  }
+  #SideBarLeft{
+    width: 250px;
+    background-color: var(--normal-bg);
+    min-height: 100%;
+    position: relative;
+    display: block;
+    padding: 0 20px;
+  }
+  #SideBarLeft #TopBar{
+    position: relative;
+    margin: 20px 0 10px 0;
+    overflow: hidden;
+    display: inline-block;
+    background-color: var(--hilighted-bg);
+    box-shadow: 3px 3px 3px var(--super-dark);
+    width: 240px;
+    transition: background 1s; -webkit-transition: background 1s;
+  }
+  #SideBarLeft #TopBar:hover{
+    background-color: var(--normal-bg);
+    cursor: pointer;
+  }
+  #SideBarLeft #TopBar #MySelf > i{
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 50px;
+    max-height: 50px;
+    margin-left: 10px;
+    color: var(--text-normal);
+  }
+  #SideBarLeft #ListShow{
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  #SideBarLeft #ListShow > ul{
+    list-style: none;
+    padding: 0;
+    margin-left: 0; margin-right: 0; margin-bottom: 0;
+    display: block;
+    margin-left: 10px !important;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  #SideBarLeft #ListShow > ul .Friend{
+    color: var(--text-normal);
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+    width: 240px;
+    max-width: 240px;
+    min-width: 240px;
+    position: relative;
+    padding: 10px 0;
+    margin: 5px 0;
+    background-color: var(--hilighted-bg);
+    box-sizing: border-box;
+    border-left: 3px solid var(--normal-border);
+    transition: border 0.3s; -webkit-transition: border 0.3s;
+    overflow-x: hidden;
+  }
+  #SideBarLeft #ListShow > ul .Friend:hover{
+    background-color: var(--hovered-bg);
+  }
+  #SideBarLeft #ListShow > ul .Friend #Content{
+    color: var(--super-light);
+    text-shadow: 1px 1px 2px var(--super-dark);
+    padding-left: 3px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+  }
+  #SideBarLeft #ListShowPending{
+    margin-top: auto;
+    overflow: hidden;
+  }
+  #SideBarLeft .leftBarSection #Label{
+    color: var(--color-mid);
+    font-size: 12px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    line-height: 12px;
+    text-align: center;
+    cursor: pointer;
+  }
+  #SideBarLeft .leftBarSection #Label #Text{
+    color: var(--color-mid);
+  }
+  #SideBarLeft .leftBarSection #Label #Text::after{
+    content: "";
+    background-color: var(--color-mid);
+    color: var(--color-mid);
+    position: relative;
+    display: inline-block;
+    height: 1px;
+    width: 60px;
+    margin-left: 10px;
+    top: -6px;
+  }
+  #SideBarLeft .leftBarSection #Label #Text::before{
+    content: "";
+    background-color: var(--color-mid);
+    color: var(--color-mid);
+    position: relative;
+    display: inline-block;
+    height: 1px;
+    width:60px;
+    margin-right: 10px;
+    top: -6px;
+  }
+  #SideBarLeft .leftBarSection > ul li i#rightAction{
+    float: right;
+    padding: 0;
+    padding-right: 7px;
+    color: var(--super-light);
+    text-shadow: 2px 2px 2px var(--super-dark);
+  }
+  #SideBarLeft .leftBarSection > ul li i#rightAction.fa-minus-circle{
+    color: var(--color-danger);
+  }
+  #SideBarLeft .leftBarSection > ul li i#rightAction.fa-times{
+    color: var(--color-danger);
+  }
+  #SideBarLeft #ListShowPending > ul{
+    list-style: none;
+    padding: 0;
+    margin-left: 0; margin-right: 0; margin-bottom: 0;
+    display: block;
+    margin-left: 10px !important;
+  }
+  #SideBarLeft #ListShowPending > ul{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  #SideBarLeft #ListShowPending > ul .FriendReq{
+    color: var(--text-normal);
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+    width: 240px;
+    max-width: 240px;
+    min-width: 240px;
+    position: relative;
+    padding: 10px 0;
+    margin: 5px 0;
+    background-color: var(--hilighted-bg);
+    box-sizing: border-box;
+    border-left: 3px solid var(--normal-border);
+    transition: border 0.3s; -webkit-transition: border 0.3s;
+    overflow-x: hidden;
+  }
+  #SideBarLeft #ListShowPending > ul .FriendReq:hover{
+    background-color: var(--hovered-bg);
+  }
+  #SideBarLeft #ListShowPending > ul .FriendReq #Content{
+    color: var(--super-light);
+    text-shadow: 1px 1px 2px var(--super-dark);
+    padding-left: 3px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+  }
+  #SideBarLeft #ListShowSent > ul{
+    list-style: none;
+    padding: 0;
+    margin-left: 0; margin-right: 0; margin-bottom: 0;
+    display: block;
+    margin-left: 10px !important;
+  }
+  #SideBarLeft #ListShowSent > ul{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  #SideBarLeft #ListShowSent > ul .SentReq{
+    color: var(--text-normal);
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+    width: 240px;
+    max-width: 240px;
+    min-width: 240px;
+    position: relative;
+    padding: 10px 0;
+    margin: 5px 0;
+    background-color: var(--hilighted-bg);
+    box-sizing: border-box;
+    border-left: 3px solid var(--normal-border);
+    transition: border 0.3s; -webkit-transition: border 0.3s;
+    overflow-x: hidden;
+  }
+  #SideBarLeft #ListShowSent > ul .SentReq:hover{
+    background-color: var(--hovered-bg);
+  }
+  #SideBarLeft #ListShowSent > ul .SentReq #Content{
+    color: var(--super-light);
+    text-shadow: 1px 1px 2px var(--super-dark);
+    padding-left: 3px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+  }
+/*LeftBar*/
+
+/*MessageBox-Container*/
+  #MessageBoxContainer{
+    border: 1px solid var(--color-mid);
+    display: none;
+    height: calc(100% - 90px);
+    min-height: calc(100% - 90px);
+    max-height: calc(100% - 90px);
+    margin-top: 70px;
+    width: auto;
+    z-index: 1;
+    min-width: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: var(--normal-bg);
+    position: absolute;
+  }
+  #MessageBoxContainer #WindowsBtn .title#PersonName{
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    color: var(--super-light);
+    font-size: 15px;
+    text-decoration: underline;
+    clear: both;
+    float: none;
+    cursor: pointer;
+    transition: color 1s; -webkit-transition: color 1s;
+  }
+  #MessageBoxContainer #WindowsBtn .title#PersonName:hover{
+    color: var(--normal-info);
+  }
+  #MessageBoxContainer #MessagesParent{
+    margin-top: 30px;
+  }
+  #MessageBoxContainer #MessagesParent #Messages{
+    position: relative;
+    width: 100%;
+    display: flex;
+    background-color: var(--normal-bg);
+    flex-direction: column-reverse;
+  }
+  #MessageBoxContainer #MessagesParent #Messages #loadingIcon{
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .upperMessage.loadingIcon{
+    height: 30px;
+    width: 30px;
+    border-width: 5px;
+    border-color: var(--reciver-bg);
+    border-top-color: var(--sender-bg);
+    margin-left: 45%;
+  }
+  #MessageBoxContainer #MessagesParent #showCasePrev{
+    position: relative;
+    max-width: 70%;
+    float: right;
+  }
+  #MessageBoxContainer #MessagesParent #showCasePrev .Priview{
+    position: relative;
+    display: none;
+    height: 150px;
+    width: 170px;
+    min-height: 150px;
+    max-height: 150px;
+    min-width: 170px;
+    max-width: 170px;
+    margin-right: 10px;
+    background-color: var(--hilighted-bg);
+    border: 1px solid var(--hilighted-bg);
+    border-radius: 5px;
+    float: right;
+    margin: 5px;
+  }
+  #MessageBoxContainer #MessagesParent #showCasePrev .Priview.shown{
+    display:inline-block;
+    top: calc(var(--msgMarginBottom) * -1 + 20px);
+  }
+  #MessageBoxContainer #MessagesParent #showCasePrev .Priview .Container{
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+  }
+  #MessageBoxContainer #MessagesParent #showCasePrev .Priview .Container i{
+    position: relative;
+    color: var(--color-mid);
+    top: 40%;
+    left: 40%;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages{
+    max-width: 70%;
+    min-width: 70%;
+    margin: 10px 10px;
+    padding: 20px;
+    border-radius: 20px;
+    min-height: 40px;
+    box-sizing: border-box;
+    vertical-align: middle;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages:first-child{
+    margin-bottom: var(--msgMarginBottom);
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages .text{
+    position: relative;
+    display: inline-block;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 99%;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    width: 99%;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Reciver{
+    float: left;
+    background-color: var(--reciver-bg);
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin-right: auto;
+    text-align: left;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Reciver .text{
+    color: var(--super-dark);
+    text-decoration: none;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Sender.unsend{
+    background-color: var(--reciver-bg);
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Sender{
+    float: right;
+    background-color: var(--sender-bg);
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-left: auto;
+    text-align: right;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Sender .text{
+    color: var(--super-light);
+    text-decoration: none;
+  }
+  #MessageBoxContainer #MessagesParent #MessageComposer{
+    position: fixed;
+    bottom: 20px;
+    width: auto;
+    min-width: auto;
+  }
+  #MessageBoxContainer #MessagesParent #MessageComposer #filePrivew{
+    position: relative;
+    display: flex;
+    max-height: 35px;
+    min-height: 35px;
+    padding: 0;
+    margin-left: 10px;
+  }
+  #MessageBoxContainer #MessagesParent #MessageComposer #filePrivew i.fa.fa-image{
+    font-size: 24px;
+    color: var(--mid-color);
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0 3px;
+  }
+  #MessageBoxContainer #MessagesParent #MessageComposer textarea#Message{
+    position: relative;
+    outline: none;
+    border-top: none;
+    padding: 10px 90px 10px 20px;
+    color: var(--color-mid);
+    width: 100%;
+    margin: 0 10px;
+    border: none;
+    border-left: 5px solid var(--color-mid);
+    font-size: 12px;
+    font-family: sans-serif;
+    text-align: left;
+    resize: none;
+    font-weight: bold;
+    height: 60px;
+    letter-spacing: 1px;
+    background-color: var(--super-light);
+  }
+  #MessageBoxContainer #MessagesParent #MessageComposer textarea#Message:focus{
+    border: 1px solid var(--color-mid);
+    border-left: 5px solid var(--normal-border);
+  }
+  #MessageBoxContainer #MessagesParent #btnContainer{
+    position: absolute;
+    top: 40px;
+    right: 0;
+  }
+  #MessageBoxContainer #MessagesParent #btnContainer i.fa{
+    color: var(--color-mid);
+    cursor: pointer;
+  }
+  #MessageBoxContainer #MessagesParent #btnContainer button#send{
+    padding: 12px 13px;
+    border-radius: 5px;
+    color: var(--super-light);
+    font-weight: bold;
+    cursor: pointer;
+  }
+  #MessageBoxContainer #MessagesParent #btnContainer button#send:disabled{
+    background-color: var(--color-disabled);
+    border: 1px solid var(--color-disabled);
+  }
+  #MessageBoxContainer #MessagesParent #btnContainer button#send:enabled{
+    background-color: var(--color-enabled);
+    border: 1px solid var(--color-enabled);
+  }
+/*/MessageBox Container*/
+
+/*RightBar*/
+  #rightBarContainer{
+    border: 1px solid var(--color-mid);
+    display: none;
+    height: calc(100% - 90px);
+    margin-top: 70px;
+    right: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+    position: fixed;
+    width: auto;
+    margin-left: 0;
+  }
+  #ShowSideBarRight{
+    display: none;
+    position: fixed;
+    right: 0;
+    cursor: pointer;
+    color: yellow;
+    transition: color 1s; -webkit-transition: color 1s;
+  }
+  #rightBarContainer.maximized{
+    width: 50%;
+  }
+  #rightBarContainer.maximized #SideBarRight{
+    width: 95%;
+  }
+  #SideBarRight{
+    position: relative;
+    width: 250px;
+    background-color: var(--normal-bg);
+    min-height: 100%;
+    display: block;
+    padding: 0 20px;
+    word-break: keep-all;
+    line-break: strict;
+  }
+  #SideBarRight #TopBar{
+    position: relative;
+    margin: 20px 0 10px 0;
+    display: inline-block;
+    overflow: hidden;
+    background-color: var(--hilighted-bg);
+    box-shadow: 3px 3px 3px var(--super-dark);
+    width: 100%;
+    transition: background 1s; -webkit-transition: background 1s;
+  }
+  #SideBarRight #TopBar:hover{
+    background-color: var(--normal-bg);
+    cursor: pointer;
+  }
+  #SideBarRight #TopBar #OtherSelf > i{
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 50px;
+    max-height: 50px;
+    margin-left: 10px;
+    color: var(--text-normal);
+  }
+  #SideBarRight #TopBar #OtherSelf > i i{ 
+    color: var(--color-mid);
+    transition: color 1s; -webkit-transition: color 1s;
+  }
+  #SideBarRight #TopBar #OtherSelf > i i:hover{
+    color: var(--hovered-bg);
+  }
+/*/RightBar*/
+
+/*Extras*/
+  #rightBarContainer::-webkit-scrollbar { width: 0 !important }
+  #rightBarContainer{scrollbar-width: none;}
+  #rightBarContainer{-ms-overflow-style: none;}
+  #SettingWindow::-webkit-scrollbar { width: 0 !important }
+  #SettingWindow{scrollbar-width: none;}
+  #SettingWindow{-ms-overflow-style: none;}
+/*/extras*/
+
+@media only screen and (max-width: 700px){
+  body{display: block;}
+  #leftBarContainer{position: absolute;}
+  #rightBarContainer{position: absolute;}
+  #MessageBoxContainer{position: absolute;}
+  #SideBarRight{ display: none; }
+  #ShowSideBarRight{ display: block; }
+  #MessageBoxContainer #MessagesParent #btnContainer button#send{
+    padding: 3px;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages .text{
+    font-size: 16px;
+  }
+}
+@media only screen and (max-width: 500px){
+  #MessageBoxContainer #MessagesParent #Messages .Messages .text{
+    font-size: 14px;
+    padding: 5px;
+  }
+  #SideBarLeft{ display: none; }
+  #ShowSideBarLeft{ display: block; }
+}
+/*costum Psudo Element*/
+  .iconic::after{
+    content: 'n';
+    color: var(--normal-info);
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 16px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .iconic.iconic0::after{content: '0'}.iconic.iconic1::after{content: '1';}
+  .iconic.iconic2::after{content: '2';}.iconic.iconic3::after{content: '3';}
+  .iconic.iconic4::after{content: '4';}.iconic.iconic5::after{content: '5';}
+  .iconic.iconic6::after{content: '6';}.iconic.iconic7::after{content: '7';}
+  .iconic.iconic8::after{content: '8';}.iconic.iconic9::after{content: '9';}
+  .iconic.iconicMore::after{content: '9+';}
+/*/costum Psudo Element*/
+/*costum animation*/
+  @-webkit-keyframes spin{from{-webkit-transform: rotate(0deg);} to {-webkit-transform: rotate(360deg);}}
+  @keyframes spin{from{ transform: rotate(0deg);} to {transform: rotate(360deg);}}
+/*/costum animation*/

@@ -1,0 +1,126 @@
+@keyframes rotate {
+  0% { transform:  translate(0px, -0px) rotate(0deg); }
+  10% { transform:  translate(0px, -0px) rotate(36deg); }
+  20% { transform:  translate(0px, -0px) rotate(72deg); }
+  30% { transform:  translate(0px, -0px) rotate(108deg); }
+  40% { transform:  translate(0px, -0px) rotate(144deg); }
+  50% { transform:  translate(0px, -0px) rotate(180deg); }
+  60% { transform:  translate(0px, -0px) rotate(216deg); }
+  70% { transform:  translate(0px, -0px) rotate(252deg); }
+  80% { transform:  translate(0px, -0px) rotate(288deg); }
+  90% { transform:  translate(0px, -0px) rotate(324deg); }
+  100% { transform:  translate(00px, -0px) rotate(360deg); }
+}
+#reserveMenu{
+	z-index: 1; position: relative; width:  100%; 
+	padding: 0; background-color:  #FFF; 
+	margin:  30px 0;
+}
+.sticky { 
+	top:  0; width:  100%;
+	padding: 15px 0; 
+}
+#MenuBar{background-color: #FFFFFF;width: 100%; }
+#MenuBar #Menu{
+	position: relative; width: 80%; margin: 0 10%; padding: 5px; }
+#MenuBar #Menu #LeftMenu{
+	position: relative; float: left; 
+}
+#MenuBar #Menu #LeftMenu #imgContainer img{
+	width: 140px; height: 35px; cursor: pointer; opacity: 0.5; 
+}
+#MenuBar #Menu #LeftMenu #imgContainer{
+	float: left; position: relative; 
+}
+#MenuBar #Menu #LeftMenu #imgContainer img:hover{
+	opacity: 1; 
+}
+#MenuBar #Menu #RightMenu{
+	position: relative; float: right; 
+}
+#MenuBar #Menu #RightMenu #menuLink{
+	list-style: none; display: inline-flex; 
+	padding: 0; margin: 0; 
+}
+#MenuBar #Menu #RightMenu #menuLink .nav-item .nav-text{
+	font-family:  sans-serif; text-transform:  uppercase; 
+	color:  #000000; padding:  0px; 
+	font-size: 14px; padding: 0rem 1.1rem; 
+	font-weight: bold; cursor: pointer; 
+	text-decoration: none; animation: itemLeave 1s; 
+	-webkit-transition:  color 1s; 
+  	transition:  color 1.5s; line-height: 35px; 
+  }
+#MenuBar #Menu #RightMenu #menuLink .nav-item hr{
+	display: none; 
+}
+#MenuBar #Menu #RightMenu #menuLink .nav-item .nav-text:hover,/*same line*/
+#MenuBar #Menu #RightMenu #menuLink .nav-item .nav-text:active/*same line*/
+	{color: #4458dc; animation: itemHover 1s; 
+	}
+#MenuBar #Menu #LeftMenu .hamburgerContainer{
+	display: none; cursor:  pointer; 
+	float: right; position: relative; 
+}
+#MenuBar #Menu #LeftMenu .hamburgerContainer .bar1, .bar2, .bar3 {
+	width:  35px; height: 5px; 
+	background-color:  #FFFFFF; margin:  6px 0; 
+	transition:  0.4s; 
+}
+#MenuBar #Menu #LeftMenu .change .bar1 {
+  -webkit-transform:  rotate(-45deg) translate(-9px, 6px); 
+  transform:  rotate(-45deg) translate(-9px, 6px); 
+}
+#MenuBar #Menu #LeftMenu .change .bar2 {
+	opacity:  0; 
+}
+#MenuBar #Menu #LeftMenu .change .bar3 {
+  -webkit-transform:  rotate(45deg) translate(-8px, -8px); 
+  transform:  rotate(45deg) translate(-8px, -8px); 
+}
+
+
+@media only screen and (max-width:  950px) {
+	#MenuBar{
+		background-color: #000000; margin: 0; 
+		padding: 0; 
+	}
+	#MenuBar #Menu{
+		z-index: 10; position: relative; padding: 0; 
+		margin: 10px 15px; width: 90%; 
+	}
+	#MenuBar #Menu #LeftMenu{
+		float: none;
+		left: 0; width: 100%; 
+	}
+	#MenuBar #Menu #LeftMenu #imgContainer img{
+		opacity: 1; margin-bottom: 10px; 
+	}
+	#MenuBar #Menu #RightMenu{
+		display: none; min-height: 200px; max-height: 320px; 
+		overflow-x: hidden; overflow-y: scroll; 
+		float: none; position: unset; left: 0; width: 100%
+	}
+	#MenuBar #Menu #RightMenu #menuLink{
+		display: inline-block; width: 100%; 
+	}
+	#MenuBar #Menu #RightMenu #menuLink .nav-item{
+		margin: 10px 0; 
+	}
+	#MenuBar #Menu #RightMenu #menuLink .nav-item .nav-text{
+		color: #FFFFFF; position: relative; 
+	}
+	#MenuBar #Menu #RightMenu #menuLink .nav-item hr{
+		display: block; position: relative; width: 80%; 
+		color: #000000AA; margin-left: 15px; 
+	}
+	#MenuBar #Menu #LeftMenu .hamburgerContainer{
+		display: inline-block; 
+	}
+}
+
+/*This Section for Mobile*/
+@media only screen and (max-width:  500px) {
+	
+}
+/************************/

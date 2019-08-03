@@ -1,0 +1,195 @@
+body {
+	position: relative; margin: 0; padding: 0;
+	height: 100%; width: 100%;
+}
+a{
+	color: #26c6da; text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+button{
+	opacity: 0.9;
+}
+button:hover{
+	opacity: 1;
+}
+
+
+#FormArea {
+	position: relative;
+	padding: 100px 10vw;
+}
+#FormArea #Greet #firstLine{
+	font-size: 1.75em; color: #222c37F0;
+	padding: 5px 0;
+}
+#FormArea #Greet #secondLine{
+	font-size: 1em; color: #5a5a5b;
+	padding: 5px 0;
+	margin-bottom: 30px;
+}
+#FormArea #Input{
+	position: relative; width: 100%;
+}
+#FormArea #Input #ErrorLogger{
+	width: 88.7%;
+	background-color: #26c6da;
+	line-height: 40px;
+	margin-bottom: 20px;
+	text-align: center;
+	color: #FFF;
+	font-weight: bold;
+}
+#FormArea #Input .fields{
+	position: relative;
+	display: inline-block;
+	width: 40%;
+	margin: 10px 60px 10px 0;
+}
+#FormArea #Input .fields input{
+	position: relative;
+	width: 100%; border: 1px solid #3214;
+	padding: 12px 13px; display: inline-block;
+	line-height: 20px;font-size: 1em;
+	color: #777; outline: none; text-transform: lowercase;
+	background-color: #FFF;
+}
+#FormArea #Input .fields input:hover{
+	border-color: #505050AA;
+}
+#FormArea #Input .fields input:focus{
+	border-color: #8ac249;
+}
+#FormArea #Input #EmailFld::before{
+	content: 'Email'; color: #5a5a5b;
+	cursor: pointer; font-size: 1.125em;
+}
+#FormArea #Input #PasswordFld::before{
+	content: 'Password'; color: #5a5a5b;
+	cursor: pointer; font-size: 1.125em;
+}
+#FormArea #Input #UserNameFld::before{
+	content: 'User Name'; color: #5a5a5b;
+	cursor: pointer; font-size: 1.125em;
+}
+#FormArea #Input #FullNameFld::before{
+	content: 'Full Name'; color: #5a5a5b;
+	cursor: pointer; font-size: 1.125em;
+}
+#FormArea #Agree{
+	color: #5a5a5b;
+	font-size: 1.02em;
+}
+#FormArea #btnContainer{
+	position: relative;
+	display: block;
+	width: 100%;
+	margin: 30px 0;
+}
+#FormArea #btnContainer .btns{
+	border: 1px solid;
+	padding: 15px 30px;
+	cursor: pointer;
+	text-decoration: none;
+	border-radius: 5px;
+	margin-right: 10px;
+	margin-top: 15px;
+	font-size: 1em;
+	box-shadow: 10px 5px 10px #3214;
+	overflow: hidden;
+}
+#FormArea #btnContainer #createBtn{
+	background-color: #9bcb64;
+	border-color: #9bcb64;
+	color: #FFFFFF;
+	font-weight: 400;
+}
+#FormArea #btnContainer #already{
+	line-height: 50px;
+	width: 100%;
+	font-size: 14px;
+}
+#seperator{
+	width: auto;
+	margin: 0 10vw;
+	text-align: center;
+	color: #5a5a5b;
+	font-weight: 300;
+}
+#seperator #label{
+	font-size: 1.5vw;
+}
+#seperator #label::after{
+	content:" ";
+	height: 2px;
+	width: 33vw;
+	background-color: #3214;
+	position: relative;
+	bottom: -10px;
+	right: 0;
+	float: right;
+	display: block;
+}
+#seperator #label::before{
+	content:" ";
+	height: 2px;
+	width: 33vw;
+	background-color: #3214;
+	position: relative;
+	bottom: -10px;
+	left: 0;
+	float: left;
+	display: block;
+}
+#DesktopApp{
+	padding: 20px 0;
+	width : auto;
+}
+#DesktopApp #downloadBtn{
+	min-width: 150px;
+	padding: 12px 13px;
+	background-color: #9bcb64DD;
+	box-shadow: none;
+	border: 1px solid #9bcb64;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-weight: 600;
+}
+
+
+/***this is for toast section**/
+#Toast {
+	visibility: hidden;min-width: 250px;margin-left: -125px;background-color: #333;
+  	color: #fff;text-align: center;border-radius: 2px;padding: 16px;position: fixed;
+  	z-index: 1;left: 50%;bottom: 30px;font-size: 17px;}
+#Toast.show {
+  visibility: visible;-webkit-animation: fadeinToast 0.5s, fadeoutToast 0.5s 2.5s;
+  animation: fadeinToast 0.5s, fadeoutToast 0.5s 2.5s;}
+@-webkit-keyframes fadeinToast{from{bottom:0;opacity:0;}to{bottom: 30px; opacity: 1;}}
+@keyframes fadeinToast{from {bottom:0; opacity:0;}to{bottom:30px; opacity:1;}}
+@-webkit-keyframes fadeoutToast{from{bottom:30px;opacity:1;}to{bottom:0;opacity:0;}}
+@keyframes fadeoutToast {from{bottom: 30px;opacity:1;}to{bottom:0; opacity:0;}}
+/******************************/
+
+
+@media only screen and (max-width: 950px) {
+	#seperator #label{ font-size: 12px; }
+	#FormArea #Input .fields{ width: 80%; }
+	#seperator #label::after{ width: 25vw; }
+	#seperator #label::before{ width: 25vw; }
+	#FormArea #btnContainer .btns{ font-size: 15px; padding: 10px 20px; }
+}
+@media only screen and (max-width: 500px) {
+	#FormArea #Agree{ font-size: 13px; }
+	#FormArea #Greet #firstLine{ font-size: 16px; }
+	#FormArea #Greet #secondLine{ font-size: 13px; }
+	#FormArea #btnContainer .btns{ font-size: 13px; padding: 7px 15px; }
+	#FormArea #Input #EmailFld::before{ font-size: 14px; }
+	#FormArea #Input #PasswordFld::before{ font-size: 14px; }
+	#FormArea #Input #UserNameFld::before{ font-size: 14px; }
+	#FormArea #Input #FullNameFld::before{ font-size: 14px; }
+	#FormArea #Input #ErrorLogger{ font-size: 12px; }
+}

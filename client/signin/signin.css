@@ -1,0 +1,181 @@
+body {
+	position: relative; margin: 0; padding: 0;
+	height: 100%; width: 100%;
+}
+a{
+	color: #26c6da; text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+button{
+	opacity: 0.9;
+}
+button:hover{
+	opacity: 1;
+}
+
+
+#FormArea {
+	position: relative;
+	padding: 100px 10vw;
+}
+
+#FormArea #Greet #firstLine{
+	font-size: 1.75em; color: #222c37F0;
+	padding: 5px 0;
+}
+#FormArea #Greet #secondLine{
+	font-size: 1em; color: #5a5a5b;
+	padding: 5px 0;
+	margin-bottom: 30px;
+}
+#FormArea #Input{
+	position: relative; width: 100%;
+}
+#FormArea #Input #ErrorLogger{
+	width: calc(70% + 22px);
+	background-color: #26c6da;
+	line-height: 40px;
+	margin-bottom: 20px;
+	text-align: center;
+	color: #FFF;
+	font-weight: bold;
+}
+
+#FormArea #Input .fields{
+	position: relative;
+	display: inline-block;
+	width: 70%;
+	min-width: 200px;
+	margin: 10px 60px 10px 0;
+}
+#FormArea #Input .fields #label{
+	color: #5a5a5b;
+	cursor: pointer;
+	font-size: 1.125em;
+}
+#FormArea #Input .fields input{
+	position: relative;
+	width: 100%; border: 1px solid #3214;
+	padding: 12px 13px; display: inline-block;
+	line-height: 20px;font-size: 1em;
+	color: #777; outline: none;
+}
+#FormArea #Input .fields input:hover{
+	border-color: #505050AA;
+}
+#FormArea #Input .fields input:focus{
+	border-color: #8ac249;
+}
+#FormArea #Extra{
+	width: 70%;
+	position: relative;
+	display: inline-block;
+	min-width: 200px;
+	direction: rtl;
+}
+#FormArea #Extra > div > span{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	direction: rtl;
+}
+#FormArea #Extra > div > span > a{
+	font-size: 1.0643em;
+}
+#FormArea #Final{
+	margin-top: 25px;
+	width: 70%;
+	position: relative;
+	display: inline-block;
+	min-width: 200px;
+	direction: rtl;
+	font-size: 1.1em;
+}
+#FormArea #Final #btnContainer input{
+	padding: 12px 13px;
+	background-color: #9bcb64DD;
+	box-shadow: none;
+	border: 1px solid #9bcb64;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-weight: 600;
+}
+
+
+
+#seperator{
+	width: auto;
+	margin: 0 10vw;
+	text-align: center;
+	color: #5a5a5b;
+	font-weight: 300;
+}
+#seperator #label{
+	font-size: 1.5vw;
+}
+#seperator #label::after{
+	content:" ";
+	height: 2px;
+	width: 33vw;
+	background-color: #3214;
+	position: relative;
+	bottom: -10px;
+	right: 0;
+	float: right;
+	display: block;
+}
+#seperator #label::before{
+	content:" ";
+	height: 2px;
+	width: 33vw;
+	background-color: #3214;
+	position: relative;
+	bottom: -10px;
+	left: 0;
+	float: left;
+	display: block;
+}
+#DesktopApp{
+	padding: 20px 0;
+	width : auto;
+}
+#DesktopApp #downloadBtn{
+	min-width: 150px;
+	padding: 12px 13px;
+	background-color: #9bcb64DD;
+	box-shadow: none;
+	border: 1px solid #9bcb64;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-weight: 600;
+}
+
+
+/***this is for toast section**/
+#Toast {
+	visibility: hidden;min-width: 250px;margin-left: -125px;background-color: #333;
+  	color: #fff;text-align: center;border-radius: 2px;padding: 16px;position: fixed;
+  	z-index: 1;left: 50%;bottom: 30px;font-size: 17px;}
+#Toast.show {
+  visibility: visible;-webkit-animation: fadeinToast 0.5s, fadeoutToast 0.5s 2.5s;
+  animation: fadeinToast 0.5s, fadeoutToast 0.5s 2.5s;}
+@-webkit-keyframes fadeinToast{from{bottom:0;opacity:0;}to{bottom: 30px; opacity: 1;}}
+@keyframes fadeinToast{from {bottom:0; opacity:0;}to{bottom:30px; opacity:1;}}
+@-webkit-keyframes fadeoutToast{from{bottom:30px;opacity:1;}to{bottom:0;opacity:0;}}
+@keyframes fadeoutToast {from{bottom: 30px;opacity:1;}to{bottom:0; opacity:0;}}
+/******************************/
+
+@media only screen and (max-width: 950px) {
+	#FormArea #Input .fields{ width: 90%; }
+	#FormArea #Input #ErrorLogger{ width: calc(90% + 22px); }
+	#FormArea #Extra{ width: 90%; }
+	#FormArea #Final{ width: 90%; }
+	#seperator #label{ font-size: 12px; }
+	#seperator #label::after{ width: 25vw; }
+	#seperator #label::before{ width: 25vw; }
+}
