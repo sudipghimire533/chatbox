@@ -1,4 +1,3 @@
-
 <?php
 $conn = new mysqli('localhost', 'sudip', 'sudip123', 'chatbox');
 $GLOBALS['username'] = base64_decode($_COOKIE[base64_encode('userId')]);
@@ -18,9 +17,7 @@ $conn->close();
     </div><br>
     <div id="TopBar" class="leftBarSection">
         <span id="MySelf"style="width: 100%;position: relative;">
-            <i class="fas fa-user"style='width: 100%;position: relative;'>
-                <?php echo $GLOBALS['displayName']; ?>
-            </i>
+            <i class="fas fa-user"style='width: 100%;position: relative;'><?php echo " ".$GLOBALS['displayName']; ?></i>
         </span>
     </div>
     <div id="ListShow" class="leftBarSection">

@@ -11,7 +11,6 @@
           <?php
             $conn = new mysqli('localhost', 'sudip', 'sudip123', 'chatbox');
             $temp_name = base64_decode($_COOKIE[base64_encode('userId')]);
-            $temp_name = mysqli_fetch_array($conn->query('SELECT DisplayName from main LIMIT 1;'))['DisplayName'];
             echo "<input type='text'placeholder='[Search] $temp_name'onkeydown='searchUser();'onkeyup='searchUser();'onfocusout='searchResFocusOut();'onfocus='startSearchUser' />";
             $conn->close();
           ?>
@@ -24,18 +23,49 @@
     </ul>
   </div>
   <div id="RightMenu">
-    <div id="DropDown">
-      <i class="fas fa-caret-down" onclick="toggleDropDown()"> More</i>
+    <div id="commonControl">
+      <span id='friendRequest'class='commonControl'>
+        <i class='fas fa-user-friends'onclick='showFriendRequestBinder();'></i>
+      </span>
+      <span id='Message'class='commonControl'>
+        <i class='fas fa-comments'></i>
+      </span>
+    </div>
+    <div id="DropDown"class="tooltip">
+      <i class="fas fa-caret-down" onclick="toggleDropDown();"></i>
     </div>
   </div>
   <div id="DropDownMenu" class="">
-      <div border="0"class="DropDownItem">
-        <div class="item-label">Home</div>
-        <div class="item-label">About</div>
-        <div class="item-label">Product</div>
-        <hr>
-        <div class="item-label" onclick="showSettingWindow();">Setting</div>
-        <div class="item-label" onclick="LogOut();">Logout</div>
+    <div border="0"class="DropDownItem">
+      <div class="item-label">Home</div>
+      <div class="item-label">About</div>
+      <div class="item-label">Product</div>
+      <hr>
+      <div class="item-label" onclick="showSettingWindow();">Setting</div>
+      <div class="item-label" onclick="LogOut();">Logout</div>
+    </div>
+  </div>
+  <div id="bindFriendRequest"class='binder fas fa-angle-up'>
+    <div id='Container'>
+      <div id='Top'class='section'>
+        <span id='left'>
+          <strong class='bindTitle'><!--Request--></strong>
+        </span>
+        <span id='right'>
+          <span id='info1'><a href='#'class='sub-label'>Find Friends</a></span>
+        </span>
+      </div>
+      <ul id='main'class='section'>
+        <div class='loadingIcon'></div>
+      </ul>
+      <div id='bottom'class='section'>
+        <span id='info1'class="infos">
+          <a href='#'>See All</a>
+        </span>
+        <span id='info2'class="infos">
+          <a href='#'>Manage</a>
+        </span>
       </div>
     </div>
+  </div>
 </div>

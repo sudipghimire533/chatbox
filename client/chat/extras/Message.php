@@ -1,9 +1,11 @@
 <?php
+gc_enable();
+gc_collect_cycles();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-if(file_exists("../../handler/SessionManager.php")){
+if(file_exists('../../handler/SessionManager.php')){
   include_once("../../handler/SessionManager.php");
 }
 if(checkOldUser($redirect=false) != true){
@@ -78,7 +80,7 @@ function showMessage($friendName, $userName){
     loadDeafultMessage($userName);
   }
 }
-if(isset($_SERVER["REQUEST_METHOD"])){
+if(isset($_SERVER['REQUEST_METHOD'])){
   $echoedSame = false;
 	if($_SERVER['REQUEST_METHOD'] == 'GET'){
 		if($_GET['action'] == 'showMessage' && isset($_GET['friendName'])){
@@ -117,7 +119,7 @@ if(isset($_SERVER["REQUEST_METHOD"])){
                       array_push($container, $lines);
                       if($i == $readLine){
                         $x = 0;
-                        foreach ($container as $key => $value) {
+                        foreach ($container as $key => $value){
                           echo $value;
                           $conn->query("UPDATE $userName SET newMessageCount=$readLine-$x WHERE Friends='$friendName';");
                           if($readLine == $x){
@@ -139,8 +141,8 @@ if(isset($_SERVER["REQUEST_METHOD"])){
             }
           }
           if(isset($_GET['count']) && (strpos($_GET['count'], 'add') !== false)){
-            $prevMsgCount = explode("add", $_GET['count'])[0];
-            $nextMsgCount = explode("add", $_GET['count'])[1];
+            $prevMsgCount = explode('add', $_GET['count'])[0];
+            $nextMsgCount = explode('add', $_GET['count'])[1];
             $result = loadMessage($friendName, $userName);
             if($result != false && isset($prevMsgCount) && isset($nextMsgCount)){
               $totalMsg = count($result);
@@ -158,6 +160,7 @@ if(isset($_SERVER["REQUEST_METHOD"])){
                     $lines = $result[$totalMsg - ($i+$prevMsgCount)];
                     array_push($container, $lines);
                     if($i == $readLine){
+                      unset($result);
                       foreach($container as $key => $value){
                         echo $value;
                       }
@@ -170,7 +173,7 @@ if(isset($_SERVER["REQUEST_METHOD"])){
               }
               else{
                 if($echoedSame == false){
-                  echo "_We_are_kindly_waiting_for_your_feedback_";
+                  echo '_We_are_kindly_waiting_for_your_feedback_';
                   $echoedSame = true;
                 }
               }
@@ -181,7 +184,7 @@ if(isset($_SERVER["REQUEST_METHOD"])){
           }
           else{
             if($echoedSame == false){
-              echo "_We_are_kindly_waiting_for_your_feedback_";
+              echo '_We_are_kindly_waiting_for_your_feedback_';
               $echoedSame = true;
             }
           }
@@ -190,12 +193,6 @@ if(isset($_SERVER["REQUEST_METHOD"])){
     }
 	}
 }
-for($i = 0;$i < 0; $i++){
-  if(isset($conn)){
-    $conn->close();
-  }
-  else{
-    break;
-  }
-}
+gc_enable();
+gc_collect_cycles();
 ?>

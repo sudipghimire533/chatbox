@@ -4,89 +4,87 @@ checkOldUser();
 ?>
 <!DOCTYPE HTML>
 <html lang="en_us">
-<head>
-	<!--include these lines in every index pages-->
-	<meta charset="UTF-8">
-	<meta name="author"content="Sudip Ghimire">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="../images/favicon.png" type="image/png">
-	<link rel="stylesheet" type="text/css" href="../menu/menu.css" />
-	<!-----change these lines per index page---->
-	<link rel="stylesheet" type="text/css" href="signup.css">
-	<title>Sudip Signup</title>
-</head>
-<body>
-	<div id="reserveMenu">
-<?php
-	$menuFile=file_get_contents("../menu/menu.php");
-	echo $menuFile;
-?>
-	</div>
-	<form id="FormArea"class="signup-Sec"method="POST"action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-		<div id="Greet">
-			<div id="firstLine" class="lines">
-				Create a Chat ID
-			</div>
-			<div id="secondLine" class="lines">
-				If you already have a Chat ID, please <a href="../signin/signin.php">sign in here</a>.
-			</div>
-		</div>
-		<div id="Input">
-			<div id="ErrorLogger"name="ErrorLogger">Fill up the Field Below</div>
+  <head>
+    <!--include these lines in every index pages-->
+    <meta charset="UTF-8">
+    <meta name="author"content="Sudip Ghimire">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="../menu/menu.css" />
+    <!-----change these lines per index page---->
+    <link rel="stylesheet" type="text/css" href="signup.css">
+    <title>Sudip Signup</title>
+  </head>
+  <body>
+    <div id="reserveMenu">
+    <?php
+      $menuFile=file_get_contents("../menu/menu.php");
+      echo $menuFile;
+    ?>
+    </div>
+    <form id="FormArea"class="signup-Sec"method="POST"action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+      <div id="Greet">
+        <div id="firstLine" class="lines">
+          Create a Chat ID
+        </div>
+        <div id="secondLine" class="lines">
+          If you already have a Chat ID, please <a href="../signin/signin.php">sign in here</a>.
+        </div>
+      </div>
+      <div id="Input">
+        <div id="ErrorLogger"name="ErrorLogger">Fill up the Field Below</div> 
+        <span id="EmailFld" class="fields">
+          <input type="text" name="Email" id="Email"onchange="Makesmall(this)" />
+        </span>
+        <span id="PasswordFld" class="fields">
+          <input type="Password" name="Password" id="Password" />
+        </span>
+        <br />
+        <span id="UserNameFld" class="fields">
+          <input type="text" name="UserName"maxlength="17" id="UserName"onchange="Makesmall(this)" />
+        </span>
+        <span id="FullNameFld" class="fields">
+          <input type="text" name="FullName" id="FullName"onchange="Makesmall(this)" />
+        </span>
+      </div>
+      <div id="Agree">
+        <div id="terms">
+          <span class="label">
+            I agree to the Your <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>
+          </span>
+        </div>
+        <div id="subscription">
+          <span class="label">
+            I understand that by signing up, I am agreeing to receive promotional materials from Author.
+          </span>
+        </div>
+      </div>
+      <div id="btnContainer">
+        <input type="submit" name="submit" id="createBtn" class="btns" value="Create Chat ID">
+        <br />
+        <a id="already" href="#">Already have a chat ID?</a>
+      </div>
+    </form>
+    <center id="seperator">
+      <span id="label">Try to Get</span>
+    </center>
+    <center id="DesktopApp">
+      <button id="downloadBtn">Get Desktop App</button>
+    </center>
+    <!------------------------------------------->
+    <div id="Toast">Some text Message Here..</div>
+    <!-------------------------------------------->
 
-			<span id="EmailFld" class="fields">
-				<input type="text" name="Email" id="Email"onchange="Makesmall(this)" />
-			</span>
-			<span id="PasswordFld" class="fields">
-				<input type="Password" name="Password" id="Password" />
-			</span>
-			<br />
-			<span id="UserNameFld" class="fields">
-				<input type="text" name="UserName"maxlength="17" id="UserName"onchange="Makesmall(this)" />
-			</span>
-			<span id="FullNameFld" class="fields">
-				<input type="text" name="FullName" id="FullName"onchange="Makesmall(this)" />
-			</span>
-		</div>
-		<div id="Agree">
-			<div id="terms">
-				<span class="label">
-					I agree to the Your <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>
-				</span>
-			</div>
-			<div id="subscription">
-				<span class="label">
-					I understand that by signing up, I am agreeing to receive promotional materials from Author.
-				</span>
-			</div>
-		</div>
-		<div id="btnContainer">
-			<input type="submit" name="submit" id="createBtn" class="btns" value="Create Chat ID">
-			<br />
-			<a id="already" href="#">Already have a chat ID?</a>
-		</div>
-	</form>
-	<center id="seperator">
-		<span id="label">Try to Get</span>
-	</center>
-	<center id="DesktopApp">
-		<button id="downloadBtn">Get Desktop App</button>
-	</center>
-	<!------------------------------------------->
-	<div id="Toast">Some text Message Here..</div>
-	<!-------------------------------------------->
-
-</body>
-<script type="text/javascript"src="../menu/menu.js"></script>
-<script type="text/javascript" src="signup.js"></script>
-<script src="../../plugins/jquery.min.js"></script>
+  </body>
+  <script type="text/javascript"src="../menu/menu.js"></script>
+  <script type="text/javascript" src="signup.js"></script>
+  <script src="../../plugins/jquery.min.js"></script>
 </html>
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set("Asia/Kathmandu");
-
 
 $Email = $Password = $UserName = $FullName = $conn = "";
 
@@ -167,11 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$GLOBALS['Password'] = mysqli_real_escape_string($conn, $_POST['Password']);
 	$GLOBALS['UserName'] = mysqli_real_escape_string($conn, $_POST['UserName']);
 	$GLOBALS['FullName'] = mysqli_real_escape_string($conn, $_POST['FullName']);
-	//fill up the previous data
-
 	echo "<script>fillPrev('$Email', '$Password', '$UserName', '$FullName');</script>";
-
-	//the validation process
 	function checkEmail($Email){
 		$sub = explode("@", $Email);
 		if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^",$Email)){

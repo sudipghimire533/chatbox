@@ -23,11 +23,14 @@ $GLOBALS['validationcode'] = urlencode(mysqli_real_escape_string($conn, $_GET['v
 echo "<h1>processing the code:</h1><div style='color:#26c6da;'>".$validationcode.'</div>';
 
 function createfilesFolder($usrname){
-	$pathOf = "../Users/".$usrname;
+	$pathOf = '../Users/'.$usrname;
 	if(!file_exists($pathOf)){
 		mkdir($pathOf, 0777, true);
-		$pathOf = "../Users/".$usrname."/Messages";
+		$pathOf = '../Users/'.$usrname.'/Messages';
 		mkdir($pathOf, 0777, true);
+		$pathOf = $pathOf.'/Data/Images/';
+		mkdir($pathOf, 077, true);
+		unset($pathOf);
 		return true;
 	}
 }
@@ -45,7 +48,6 @@ function createUserTable(){
 					Friends VARCHAR(100) NOT NULL UNIQUE,
 					newMessage INT(1) NOT NULL DEFAULT 0,
 					newMessageCount INT(20) NOT NULL DEFAULT 0,
-					DisplayName VARCHAR(100) NOT NULL,
 					PRIMARY KEY(ID));
 				");
 	$conn->query("DELETE FROM temp WHERE Validation='$validationcode';");
@@ -61,7 +63,7 @@ function checkValidation(){
 	$res = $GLOBALS['res'];
 	$myself = mysqli_fetch_array($res)['UserName'];
 	if((mysqli_num_rows($res) == 1)){
-		$shift = $conn->query("INSERT INTO main (Email, UserName, FirstName, LastName, Password, DisplayName) SELECT Email, UserName, FirstName, LastName, Password, FullName from temp where Validation='$validationcode';");
+		$shift = $conn->query("INSERT INTO main (Email, UserName, FirstName, LastName, Password) SELECT Email, UserName, FirstName, LastName, Password from temp where Validation='$validationcode';");
 		if($shift == TRUE){
 			echo "<br><b style='color:#55FF55;'>[+] We shifted you to our database..</b><br>";
 			createUserTable();
@@ -75,6 +77,5 @@ function checkValidation(){
 }
 checkValidation();
 
-mysqli_close($conn);
 exit;
 ?>

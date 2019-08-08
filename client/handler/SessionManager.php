@@ -1,4 +1,14 @@
 <?php
+gc_enable();
+gc_collect_cycles();
+function rmdir_recursive($dir) {
+	foreach(scandir($dir) as $file) {
+		if ('.' === $file || '..' === $file) continue;
+		if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
+		else unlink("$dir/$file");
+	}
+	rmdir($dir);
+}
 function redirectPrivate(){
 	header("Location: http://".$_SERVER['HTTP_HOST']."/Web/client/chat/chat.php");
 	setcookie('as03had29of', base64_encode('Verified'), time()+100, '/');
@@ -47,7 +57,7 @@ function checkOldUser($redirect = true){
 			echo "<script>invalid();document.getElementById('ErrorLogger').textContent = 'We noticed a change in your account..';</script>";
 			deleteOldLogin();
 			return false;
-		}
+    }
 	}
 	else{
 		//echo '<br>i am new na<br>';
@@ -88,4 +98,6 @@ else{
 	redirectPrivate();
 	exit;
 }
+gc_enable();
+gc_collect_cycles();
 ?>

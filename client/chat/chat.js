@@ -22,7 +22,8 @@ function PositionElements(){
   if(existRightBar == true){
     vars['rightBarContainer'] = document.getElementById('rightBarContainer');
     vars['RightWidth'] = vars['rightBarContainer'].offsetWidth;
-  } else{
+  }
+  else{
     vars['RightWidth'] = 0;
   }
   vars['MessageContainer'] = document.getElementById('MessageBoxContainer');
@@ -42,8 +43,8 @@ function PositionElements(){
 function loadSideBars(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("SentReqestPending").innerHTML = this.responseText;
+    if (this.readyState == 4 && this.status == 200){
+      document.getElementById("SentReqestPending").innerHTML = this.responseText;
     }
   };
   xhttp.open("GET", "../handler/ListMain.php?placements=sentList", true);
@@ -65,7 +66,12 @@ function loadSideBars(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("FriendList").innerHTML = this.responseText;
+      if(this.responseText == 'samamamefriendndndjhjrtgrghjhgyrityirytieyrinmdnmbgmfdmbfmbmmm22121gdhfgdhsf'){
+        //do nothing
+      }
+      else{
+        document.getElementById("FriendList").innerHTML = this.responseText;
+      }
       if(detectLastTalk == true){
       //this shold only execute once when loaded for first time
         let oneTime = new Array;
@@ -116,7 +122,6 @@ function refreshMessage(elem, next=0){
   }
   this.vars = new Array;
   this.vars['friendName'] = $(elem).attr('id');
-  $("#MessageBoxContainer #WindowsBtn .title#PersonName").get(0).textContent = this.vars['friendName'];
   $.ajax({
     url: "extras/Message.php",
     data: {
@@ -169,10 +174,20 @@ function refreshMessage(elem, next=0){
   delete this.vars;
   delete next;
   if(loadMessage == true){
-    loop = setTimeout(refreshMessage, 500, elem);
+    loop = setTimeout(refreshMessage, 500, elem, 0);
   }
 }
 function showMessage(elem){
+  $("#MessageBoxContainer #WindowsBtn .title#PersonName").get(0).textContent = elem.id;
+  if(document.getElementById('MessageBoxContainer').style.visibility != "visible" ||
+      document.getElementById('MessageBoxContainer').style.display == "none"){
+    document.getElementById('MessageBoxContainer').style.visibility = "visible";
+    document.getElementById('MessageBoxContainer').style.display = "block";
+  }
+  if(document.body.clientWidth <= 500){
+    hideLeftBar();
+    maximizeMessage(document.getElementById('messageMaximizer'));
+  }
   this.shouldRefresh = true;
   loadMessage = true;
   totalMessage = 10;
@@ -312,11 +327,16 @@ function ready() {
   });
   alertSound = new Audio('../plugins/alert.wav');
   $("#DropDownMenu").hide(50);
+  $("#Menu #bindFriendRequest").hide(50);
   $("button#send").attr("disabled", true);
   document.getElementById("menuContainer").style.display = "block";
   document.getElementById("leftBarContainer").style.display = "block";
   document.getElementById("rightBarContainer").style.display = "block";
   document.getElementById("MessageBoxContainer").style.display = "block";
+  if(document.body.clientWidth <= 500){
+    document.getElementById("MessageBoxContainer").style.visibility = "hidden";
+    detectLastTalk = false;
+  }
   $("#SearchBoxForm input").each(function(){$(this).get(0).value="";});
   $('#MessageBoxContainer').animate({
     scrollTop: $('#MessageBoxContainer').get(0).scrollHeight
@@ -479,12 +499,39 @@ function refreshSearch(){
   $("#SearchBoxForm input").keydown();
 }
 function toggleDropDown(){
-  $("#DropDownMenu").show(500);
+  $("#DropDownMenu").toggle(500);
   $("body").bind("mousedown.hideMenuDropDown",function(event){
     if($(event.target).is("#DropDownMenu *") == false){
       $("#DropDownMenu").hide(500);
     }
     $("body").unbind('.hideMenuDropDown');
+  });
+}
+let showFriendRequestBinderTrigger = 0;
+function showFriendRequestBinder(){
+  let binder = $("#Menu #bindFriendRequest");
+  binder.slideToggle(200);
+  showFriendRequestBinderTrigger = (showFriendRequestBinderTrigger == '0' ? '1' : '0');
+  if(showFriendRequestBinderTrigger == 1){
+    $("#Menu #RightMenu #commonControl #friendRequest i.fas").get(0).style.color = "var(--normal-border)";
+    $.ajax({ 
+      url: '../handler/ListMain.php',
+      data: {placements: 'PendingList'},
+      type: 'GET',
+      cache: false
+    }).done(function(res){
+      $("#Menu #bindFriendRequest #Container #main").get(0).innerHTML = res;
+    });
+  }
+  else{
+    $("#Menu #RightMenu #commonControl #friendRequest i.fas").get(0).style.color = "var(--text-normal)";
+    $("#Menu #bindFriendRequest #Content #main").get(0).innerHTML = "<div class='loadingIcon'></div>";
+  }
+  $("body").bind( "click.hideRequestBinder",function(event) {
+    if($(event.target).is("#Menu #bindFriendRequest *") == false){
+      console.log('outside click');
+    }
+    $("body").unbind('.hideSearchMenu');
   });
 }
 function LogOut(){
@@ -551,6 +598,10 @@ function hideRightBar(){
   PositionElements();
 }
 function showRightBar(){
+  if(document.body.clientWidth <= 500){
+    hideLeftBar();
+    closeMessage();
+  }
   $("#SideBarRight").show(300);
   $("#ShowSideBarRight").hide();
   PositionElements();
@@ -595,6 +646,10 @@ function unmaximizeMessage(me){
   $(me).attr("onclick", "maximizeMessage(this)");
   PositionElements()
 }
+function closeMessage(){
+  document.getElementById('MessageBoxContainer').style.visibility = "hidden";
+  showLeftBar();
+}
 function showSettingWindow(){
   $("#DropDownMenu").hide(50);
   $.ajax({
@@ -606,6 +661,9 @@ function showSettingWindow(){
       initilizeSettingWin();
     }
   });
+  if(document.body.clientWidth <= 500){
+    hideLeftBar();
+  }
 }
 function resizeSettingWindow(){
   if(existLeftBar == true){

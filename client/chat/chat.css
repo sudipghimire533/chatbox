@@ -9,7 +9,7 @@
   background-color: transparent;
   transition: background 0.5s; -webkit-transition: background 0.5s;
 }
-/*cotum elements*/
+/*costum elements*/
   i.fa, i.fas{
     color: inherit;
     background-color: inherit;
@@ -26,6 +26,11 @@
   #MessageBoxContainer, #LeftBarContainer{
     scrollbar-color: #AAA var(--hilighted-bg);
     scrollbar-width: thin;
+  }
+  #WindowsBtn{
+    max-height: 20px;
+    overflow: hidden;
+    display: flex;
   }
   #WindowsBtn .title{
     text-align: center;
@@ -206,6 +211,23 @@
     width: 50%;
     display: flex;
   }
+  #Menu #RightMenu #commonControl{
+    position: absolute;
+    right: 0;
+    margin-right: 40px;
+    margin-top: 10px;
+  }
+  #Menu #RightMenu #commonControl .commonControl i.fas{
+    color: var(--text-normal);
+    cursor: pointer;
+  }
+  #Menu #RightMenu #commonControl .commonControl i.fas:hover,
+  #Menu #RightMenu #commonControl .commonControl i.fas:active,
+  #Menu #RightMenu #commonControl .commonControl i.fas:focus{
+    color: transparent;
+   -webkit-text-stroke-color: var(--text-normal);
+    -webkit-text-stroke-width: 2px;
+  }
   #Menu #RightMenu #DropDown{
     margin-left: auto;
     position: relative;
@@ -249,6 +271,216 @@
   #Menu #DropDownMenu .DropDownItem .item-label:hover{
     color: var(--color-mid);
   }
+  #Menu .binder{
+    position: absolute;
+    right: 0;
+    margin-top: 40px;
+    background-color: var(--normal-bg);
+    border: 1px solid var(--normal-border);
+    width: 25%;
+  }
+  #Menu .binder #Container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  #Menu .binder::before{
+    position: absolute;
+    right: 0;
+    top: -20px;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--normal-border);
+  }
+  #Menu .binder #Container #top{
+    position: relative;
+    display: inline-block;
+    top: 0;
+    width: 100%;
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  #Menu .binder #Container #top::after{
+    content: " ";
+    color: var(--color-mid);
+    background-color: var(--color-mid);
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+  }
+  #Menu .binder #Container #main{
+    margin-bottom: 5px;
+    display: inline-block;
+    min-height: 220px;
+    max-height: 220px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+  }
+  #Menu .binder #Container #main > .loadingIcon{
+    position: relative;
+    display: inline-flex;
+    height: 20px;
+    width: 20px;
+    border-width: 4px;
+  }
+  #Menu .binder #Container #main::after{
+    content: ' ';
+    position: absolute;
+    height: 2px;
+    width: 95%;
+    left: 2.5%;
+    bottom: 25;
+    color: var(--color-mid);
+    background-color: var(--color-mid);
+  }
+  #Menu .binder #Container #main > span#info{
+    font-size: 12px;
+    color: var(--text-normal);
+  }
+  #Menu .binder #Container #bottom{
+    position: relative;
+    display: flex;
+    text-align: center;
+  }
+  #Menu .binder #Container #bottom .infos{
+    flex-grow: 0.5;
+  }
+  #Menu .binder #Container #bottom *{
+    font-size: 12px;
+  }
+  #Menu .binder #Container #bottom a{
+    text-decoration: none;
+    color: var(--normal-border);
+    transition: color 1s;-webkit-transition: color 1s;
+  }
+  #Menu .binder #Container #bottom a:hover,
+  #Menu .binder #Container #bottom a:active,
+  #Menu .binder #Container #bottom a:focus{
+    color: var(--normal-text);
+    text-decoration: underline;
+  }
+  #Menu .binder #Container #top #left{
+    position: relative;
+    display: inline-block;
+    float: left;
+    max-width: 50%;
+    min-width: 50%;
+    width: 50%;
+    color: var(--normal-border);
+  }
+  #Menu .binder #Container #top #left::after{
+    content: "Request:";
+  }
+  #Menu .binder #Container #top #left *{
+    color: inherit;
+    font-weight: bold;
+  }
+  #Menu .binder #Container #top #right{
+    position: relative;
+    display: inline-block;
+    float: right;
+    max-width: 50%;
+    min-width: 50%;
+    width: 50%;
+    color: var(--normal-border);
+  }
+  #Menu .binder #Container #top #right *{
+    color: inherit;
+  }
+  #Menu .binder #Container #top #right span .sub-label{
+    float: right;
+  }
+  #Menu .binder #Container #top #right a{
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--normal-border);
+    transition: color 1s;-webkit-transition: color 1s;
+  }
+  #Menu .binder #Container #top #right a:hover,
+  #Menu .binder #Container #top #right a:focus,
+  #Menu .binder #Container #top #right a:active{
+    color: var(--normal-text);
+    text-decoration: underline;
+  }
+  #Menu #bindFriendRequest{
+    margin-right: 65px;
+    max-width: 350px;
+    min-width: 250px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  #Menu #bindFriendRequest > div#Container{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  #Menu #bindFriendRequest #Container #main > li{
+    flex-grow: 1;
+    justify-content: left;
+    position: relative;
+    left: -40px;
+    overflow: hidden;
+    padding: 15px 7px;
+    background-color: var(--hilighted-bg);
+    border: 1px solid var(--hilighted-bg);
+    width: calc(100% + 15px);
+    overflow: hidden;
+    white-space: nowrap;
+    border-left: 3px solid var(--normal-border);
+    margin: 10px 0;
+  }
+  #Menu #bindFriendRequest #Container #main > li:hover{
+    background-color: var(--hovered-bg);
+  }
+  #Menu #bindFriendRequest #Container #main > li #Content{
+    display: flex;
+  }
+  #Menu #bindFriendRequest #Container #main > li #Content i{
+    color: var(--super-light);
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    text-shadow: 1px 1px 5px var(--super-dark);
+  }
+  #Menu #bindFriendRequest #Container #main > li #Content #rightAction{
+    position: absolute;
+    right: 4;
+    color: var(--super-light);
+    text-shadow: 1px 1px 2px var(--super-dark);
+    transition: color 0.5s;-webkit-transition: color 0.5s;
+    transition: text-shadow 0.5s;-webkit-transition: text-shadow 0.5s;
+  }
+  #Menu #bindFriendRequest #Container #main > li #Content #rightAction.fas::before{
+    content: "confirm  \f234";
+    font-size: 14px;
+    background-color: var(--normal-border);
+    padding: 7px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px var(--super-dark);
+    z-index: 1;
+  }
+  #Menu #bindFriendRequest #Container #main > li #Content #rightAction.fas:hover,
+  #Menu #bindFriendRequest #Container #main > li #Content #rightAction.fas:focus,
+  #Menu #bindFriendRequest #Container #main > li #Content #rightAction.fas:active{
+    color: var(--super-dark);
+    text-shadow: 1px 1px 2px var(--super-light);
+  }
+  #Menu #bindFriendRequest #Container #main{
+    display: block;
+  }
+  #Menu .binder #Container #main > .loadingIcon{
+    left: 40%;
+    top: 40%;
+  }
 /*/Menu*/
 
 /*LeftBar*/
@@ -268,9 +500,9 @@
     display: none;
     position: fixed;
     left: 0;
+    z-index: 1;
     cursor: pointer;
     color: yellow;
-    z-index: 1;
     transition: color 1s; -webkit-transition: color 1s;
   }
   #SideBarLeft{
@@ -335,16 +567,41 @@
     transition: border 0.3s; -webkit-transition: border 0.3s;
     overflow-x: hidden;
   }
+  #SideBarLeft #ListShow > ul .Friend #Content{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    text-align: left;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    max-height: 42px;
+  }
+  #SideBarLeft #ListShow > ul .Friend #Content img.profile{
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+  }
+  #SideBarLeft #ListShow > ul .Friend #Content span.text {
+    padding-left: 5px;
+    font-size: 15px;
+    color: var(--super-light);
+    font-weight: bold;
+    text-shadow: 0px 0px 5px var(--super-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  #SideBarLeft #ListShow > ul .Friend #Content #rightAction{
+    display: flex;
+    align-items: center;
+  }
   #SideBarLeft #ListShow > ul .Friend:hover{
     background-color: var(--hovered-bg);
-  }
-  #SideBarLeft #ListShow > ul .Friend #Content{
-    color: var(--super-light);
-    text-shadow: 1px 1px 2px var(--super-dark);
-    padding-left: 3px;
-    text-align: center;
-    font-weight: bold;
-    position: relative;
   }
   #SideBarLeft #ListShowPending{
     margin-top: auto;
@@ -400,14 +657,15 @@
   #SideBarLeft .leftBarSection > ul li i#rightAction.fa-times{
     color: var(--color-danger);
   }
+  #SideBarLeft .leftBarSection > ul li i#rightAction.fa-circle{
+    color: var(--normal-border);
+  }
   #SideBarLeft #ListShowPending > ul{
     list-style: none;
     padding: 0;
     margin-left: 0; margin-right: 0; margin-bottom: 0;
     display: block;
     margin-left: 10px !important;
-  }
-  #SideBarLeft #ListShowPending > ul{
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -426,7 +684,6 @@
     background-color: var(--hilighted-bg);
     box-sizing: border-box;
     border-left: 3px solid var(--normal-border);
-    transition: border 0.3s; -webkit-transition: border 0.3s;
     overflow-x: hidden;
   }
   #SideBarLeft #ListShowPending > ul .FriendReq:hover{
@@ -498,7 +755,11 @@
     background-color: var(--normal-bg);
     position: absolute;
   }
+  #MessageBoxContainer #WindowsBtn{
+    display: flex !important;
+  }
   #MessageBoxContainer #WindowsBtn .title#PersonName{
+    flex-grow: 1;
     letter-spacing: 1.5px;
     font-weight: 500;
     color: var(--super-light);
@@ -508,9 +769,16 @@
     float: none;
     cursor: pointer;
     transition: color 1s; -webkit-transition: color 1s;
+    overflow: hidden;
   }
   #MessageBoxContainer #WindowsBtn .title#PersonName:hover{
     color: var(--normal-info);
+  }
+  #MessageBoxContainer #WindowsBtn #back{
+    display: none;
+  }
+  #MessageBoxContainer #WindowsBtn #back::before{
+    content: "\f053 Back";
   }
   #MessageBoxContainer #MessagesParent{
     margin-top: 30px;
@@ -623,6 +891,27 @@
   #MessageBoxContainer #MessagesParent #Messages .Sender .text{
     color: var(--super-light);
     text-decoration: none;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages.Notification{
+    width: 95%;
+    max-width: 95%;
+    background-color: transparent;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages.Notification .text{
+    font-size: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 200;
+    color: var(--super-dark);
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages.Notification .text.danger{
+    color: var(--color-danger);
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages.Notification .text.large{
+    font-size: 12px;
+  }
+  #MessageBoxContainer #MessagesParent #Messages .Messages.Notification .text.Vlarge{
+    font-size: 14px;
   }
   #MessageBoxContainer #MessagesParent #MessageComposer{
     position: fixed;
@@ -774,26 +1063,23 @@
 /*/extras*/
 
 @media only screen and (max-width: 700px){
-  body{display: block;}
   #leftBarContainer{position: absolute;}
   #rightBarContainer{position: absolute;}
   #MessageBoxContainer{position: absolute;}
   #SideBarRight{ display: none; }
   #ShowSideBarRight{ display: block; }
-  #MessageBoxContainer #MessagesParent #btnContainer button#send{
-    padding: 3px;
-  }
-  #MessageBoxContainer #MessagesParent #Messages .Messages .text{
-    font-size: 16px;
-  }
+  #MessageBoxContainer #MessagesParent #btnContainer button#send{padding: 12px 7px;}
+  #MessageBoxContainer #MessagesParent #Messages .Messages .text{ font-size: 16px;}
+  #MessageBoxContainer #MessagesParent #Messages .Messages{ padding: 15px; }
 }
 @media only screen and (max-width: 500px){
-  #MessageBoxContainer #MessagesParent #Messages .Messages .text{
-    font-size: 14px;
-    padding: 5px;
-  }
-  #SideBarLeft{ display: none; }
-  #ShowSideBarLeft{ display: block; }
+  #MessageBoxContainer{visibility: hidden;}
+  #MessageBoxContainer #WindowsBtn #messageMinimizer{display: none;}
+  #MessageBoxContainer #WindowsBtn #messageMaximizer{display: none;}
+  #MessageBoxContainer #WindowsBtn #back{display: block;}
+  #MessageBoxContainer #MessagesParent #btnContainer button#send{padding: 12px 7px;}
+  #MessageBoxContainer #MessagesParent #Messages .Messages .text{font-size: 14px; padding: 5px;}
+  #MessageBoxContainer #MessagesParent #Messages .Messages{ padding: 10px; }
 }
 /*costum Psudo Element*/
   .iconic::after{
